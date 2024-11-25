@@ -93,7 +93,7 @@ def getData(cali_path, melbourne_path, portugal_path, nrows=1000000):
     portugal.reset_index(drop=True, inplace=True)
 
     #Merge the three datasets
-    merged_data = cali.merge(melbourne, how='outer', left_index=True, right_index=True, suffixes=('', '_melb'))
+    merged_data = melbourne.merge(cali, how='outer', left_index=True, right_index=True, suffixes=('', '_cali'))
     merged_data = merged_data.merge(portugal, how='outer', left_index=True, right_index=True, suffixes=('', '_port'))
 
     #Consolidate columns with the same prefix
