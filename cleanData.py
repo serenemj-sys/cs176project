@@ -28,11 +28,9 @@ def cleanMergedData():
   merged['home_type'] = merged['home_type'].replace('Duplex', 'Multi-Unit Housing')
   
   ## CALIFORNIA HOME_TYPE CLEANUP
-  """
-  Single family homes and Townhouses are grouped with 'House', 
-  Multi-Family Homes and Townhouse are grouped with 'Duplex'
-  LOT is grouped with 'Land', CONDO and APARTMENT go under 'Apartment'
-  """
+  # Houses, including Townhouses, get grouped under 'House', 
+  # while multi-family houses, condos, apartments get grouped under 'Multi-Unit Housing'.
+  # 'LOT' gets renamed to 'Land' for unity.
   
   cali_repl = {
       'SINGLE_FAMILY': 'House',
@@ -46,11 +44,8 @@ def cleanMergedData():
   
   
   ## MELBOURNE HOME_TYPE CLEANUP
-  """
-  h(houses) and t(townhouses) get merged with 'House'
-  u(unit/duplex) gets merged with 'Apartment' as 
-  No values of 'Land' in Melbourne data
-  """
+  # 'h' gets renamed with 'House', 't' which stands for townhouse also gets renamed 'House',
+  # while 'u' standing for unit go under 'Multi-Unit Housing'
   
   merged['home_type'] = merged['home_type'].replace('h', 'House')
   merged['home_type'] = merged['home_type'].replace('t', 'House')
@@ -58,7 +53,6 @@ def cleanMergedData():
   
   ## DROP NA
   merged.dropna(subset=['home_type'], inplace=True)
-
 
 
 
