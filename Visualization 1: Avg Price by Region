@@ -1,0 +1,19 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Calculate the average price by region
+avg_price_by_region = df.groupby('Regionname')['Price'].mean().sort_values()
+
+# Set up the visualization
+plt.figure(figsize=(10, 6))
+sns.barplot(x=avg_price_by_region.values, y=avg_price_by_region.index, palette="viridis")
+
+# Add titles and labels
+plt.title('Average Property Price by Region', fontsize=16)
+plt.xlabel('Average Price (AUD)', fontsize=12)
+plt.ylabel('Region', fontsize=12)
+plt.grid(axis='x', linestyle='--', alpha=0.7)
+
+# Show the plot
+plt.tight_layout()
+plt.show()
